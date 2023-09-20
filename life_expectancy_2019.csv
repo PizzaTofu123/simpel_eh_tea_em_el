@@ -1,4 +1,4 @@
-"Country.Name","Country.Code","Region","IncomeGroup","Year","Life.Expectancy.World.Bank","Prevelance.of.Undernourishment","CO2","Health.Expenditure..","Education.Expenditure..","Unemployment","Corruption","Sanitation","Injuries","Communicable","NonCommunicable"
+"Country Name","Country Code","Region","IncomeGroup","Year","Life Expectancy World Bank","Prevelance of Undernourishment","CO2","Health Expenditure %","Education Expenditure %","Unemployment","Corruption","Sanitation","Injuries","Communicable","NonCommunicable"
 "Afghanistan","AFG","South Asia","Low income",2019,64.833,26.9,6079.99992370605,13.24220181,3.21377992630005,11.2170000076294,2,0,3481166.42,6034434.86,7601757.82
 "Angola","AGO","Sub-Saharan Africa","Lower middle income",2019,61.147,17.9,25209.9990844727,2.53335953,1.92745733261108,7.4210000038147,0,0,1168866,7237433.13,4176568.27
 "Albania","ALB","Europe & Central Asia","Upper middle income",2019,78.573,4.3,4829.99992370605,0,3.91665005683899,11.4700002670288,0,47.57714147,82288.1,51797.42,631629.88
