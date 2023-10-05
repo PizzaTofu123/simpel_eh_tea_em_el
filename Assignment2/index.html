@@ -43,7 +43,7 @@
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-        <div id="vis2" class="vis-container"></div>
+        <div id="vis1" class="vis-container"></div>
       </div>
     </div>
     <!-- end pure grid group -->
@@ -52,22 +52,18 @@
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
-      </div>
-      <div class="pure-u-1-1">
-        <div id="vis1" class="vis-container"></div>
-      </div>
-      <div class="pure-u-1-1">
+        <div id="vis2" class="vis-container"></div>
       </div>
     </div>
     <!-- end pure grid group -->
 
   <script type="text/javascript">
-    var specVis1 = "./line.json";
-    var specVis2 = "./map.vg.json";
+    var map1 = "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/Assignment2/map.vg.json";
+    var bar_line= "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/Assignment2/bar_line.json";
+    
+    vegaEmbed('#vis1', map1, { "actions": false });
 
-    vegaEmbed('#vis1', specVis1, { "actions": false });
-
-    vegaEmbed('#vis2', specVis2, { "actions": false }).then(function (result) {
+    vegaEmbed('#vis2', bar_line, { "actions": false }).then(function (result) {
       // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
     }).catch(console.error);
 

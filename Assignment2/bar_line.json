@@ -54,7 +54,7 @@
     },
     {
       "name": "Start_year",
-      "value": 2000,
+      "value": 2010,
       "bind": {
         "input": "range",
         "min": 1961,
@@ -89,7 +89,7 @@
   "hconcat": 
   [{
      "title":"Population density throughout the years",
-      "width":415,
+      "width":500,
       "height": 600,
       "mark": {
         "type": "line",
@@ -135,7 +135,7 @@
   }, 
   {
     "title":"Current population (2020)",
-    "width":415,
+    "width":500,
     "height": 600,
     "mark": {
       "type": "bar"

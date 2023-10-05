@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Life expectancy at birth (2021)",
+  "title": "Life expectancy at birth",
   "width": "container",
   "height": 400,
    "data": {
