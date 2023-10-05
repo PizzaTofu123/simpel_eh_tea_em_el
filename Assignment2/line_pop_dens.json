@@ -1,0 +1,126 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_No_NA_SEA.csv"},
+  "width":825,
+  "height": 600,
+  "params": [
+    {
+      "name": "Country_selection",
+      "value": "Indonesia",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Indonesia",
+          "World",
+          "Vietnam",
+          "Thailand",
+          "Malaysia",
+          "Philippines",
+          "Brunei",
+          "Myanmar",
+          "Thailand",
+          "Bangladesh",
+          "Sri Lanka",
+          "Cambodia",
+          "Brunei Darussalam",
+          "United States of America",
+          "India",
+          "China",
+          "Japan",
+          "United Kingdom",
+          "Spain"
+        ],
+        "labels": [
+          "Indonesia",
+          "World",
+          "Vietnam",
+          "Thailand",
+          "Malaysia",
+          "Philippines",
+          "Brunei",
+          "Myanmar",
+          "Thailand",
+          "Bangladesh",
+          "Sri Lanka",
+          "Cambodia",
+          "Brunei Darussalam",
+          "United States of America",
+          "India",
+          "China",
+          "Japan",
+          "United Kingdom",
+          "Spain"
+        ],
+        "name": "Country selection: "
+      }
+    },
+    {
+      "name": "grid",
+      "select": "interval",
+      "bind": "scales"
+    },
+    {
+      "name": "Start_year",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 1961,
+        "max": 2020,
+        "step": 1,
+        "name": "Select start year (Population Density) :"
+      }
+    },
+    {
+      "name": "End_year",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 1961,
+        "max": 2020,
+        "step": 1,
+        "name": "Select end year (Population Density)  :"
+      }
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": false,
+      "fill":"white"
+    }
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "title": "Year"
+    },
+    "y": {
+      "field": "population_density",
+      "type": "quantitative",
+      "title": "Population Density"
+    },
+    "color": {
+      "field": "country",
+      "condition": {
+        "test": "datum['country'] == 'Indonesia'",
+        "value": "grey"
+      }
+    },
+    "opacity":{
+      "condition":{
+        "test": "datum['country'] == Country_selection",
+        "value": 1
+      },
+      "value":0.1
+    },
+    "tooltip": [
+      {"field": "country", "type": "nominal", "title": "Country"},
+      {"field": "population_density", "type": "quantitative"}
+    ]
+  },
+  "transform": [
+    {"filter": "datum.year > '1960' && datum.year < 2021"},
+    {"filter": "datum.year >= Start_year && datum.year <= End_year"}
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "height": 1000,
+  "data": {"url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_2020.csv"},
+  "mark": "bar",
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "ordinal",
+      "title": "Countries",
+      "sort": "-y"
+
+    },
+    "y": {
+      "aggregate": "mean",
+      "field": "population_density",
+      "type": "quantitative"
+    },
+    "color": {
+      "condition": {
+        "test": "datum['country'] == 'Indonesia'",
+        "value": "red"
+      },
+      "value": "lightgrey"
+    },
+    "tooltip": [
+      {"field": "country", "type": "nominal", "title": "Country"},
+      {"field": "population_density", "type": "quantitative"}
+    ]
+  },
+  "transform": [
+    {"filter": "datum.country!='World' && datum.country!='Macao SAR, China' && datum.country!='Monaco'"}
+  ]
+}
