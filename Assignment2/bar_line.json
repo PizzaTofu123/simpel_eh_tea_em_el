@@ -201,33 +201,7 @@
       },
       "transform": [
         {"filter": "datum.year == Population_year"}
-      ]},
-      {
-        "mark": {
-          "type": "text",
-          "align": "center",
-          "dy": 250,
-          "dx": 90,
-          "fontWeight":"bold",
-          "baseline": "middle",
-          "fontStyle": "italic",
-          "fontSize": 10
-        },
-        "transform": [
-          {
-            "filter": "datum.country == 'Indonesia' && datum.year == Population_year"
-          },
-          {
-            "calculate": "'Indonesia has a population ;of ' + datum['population']",
-            "as": "text_annotation_raw"
-          },
-          {
-            "calculate": "split(datum.text_annotation_raw, ';')",
-            "as": "text_annotation"
-          }
-        ],
-        "encoding": {"text": {"field": "text_annotation"}}
-      }
+      ]}
     ]
   }
   ]
