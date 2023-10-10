@@ -20,35 +20,51 @@
 
   <!-- CSS file -->
   <link rel="stylesheet" type="text/css" href="css/styles.css" media="all">
-
-
 </head>
 
-<body style="background-color: lightblue;">
+<body>
 
   <div class="page">
 
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
+        <div class="description-mid">
+          <h1 style="text-align: center ; padding-top: 10px;">Development of Southeast Asian Countries</h1>
+        </div>
       </div>
-      <div class="pure-u-1-1">
-        <h1>Development of Indonesia</h1>
-      </div>
-      <div class="pure-u-1-1">
+      <div class="pure-u-1-1" style="text-align: center; ">
+        <div class="description-mid"><p><b>South East Asia</b> or <b>SEA</b> for short is the geographical south-eastern region of Asia including countries such as
+          <b>Brunei, Cambodia, East Timor, Indonesia, Malaysia, Myanmar, Philipines, Singapore, Thailand and Vietnam</b>. In this visualisation, I will be comparing the aforementioned
+          countries based on social, political, macro economical and environmental data that define how well a country has developed throughout the years.
+          </p></div>
       </div>
     </div>
     <!-- end pure grid group -->
 
     <!-- pure grid group -->
     <div class="pure-g">
-      <div class="pure-u-1-1">
+      <div class="pure-u-1-2">
         <div id="vis1" class="vis-container"></div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description-right">
+          <h3 style="font-weight:900;">LIFE EXPECTANCY</h3>
+          <p>One of the best indicators to seeing how well a country performs in general is to look at its Life expectancy which represents
+            the average years or lifespan a person will have be expected to have if they were to live in the country. It can also be used to
+            represent the quality of healthcare and the level of sanitation of the country.
+          </p>
+          <p>From the presented map of the countries and their corresponding life expectancy throughout the years, it is clear that the life 
+            expectancy have been <b>increasing</b> for all the countries throughout decades of development. This can be caused by the economic improvement
+            of the country itself or just by the improvement of life qualities of the entire world. <b>Singapore</b> has the highest Life expectancy of 
+            <b>83.44 years</b> while <b>Myanmar</b> has the lowest Life expectancy of <b>65.672 years</b> in the most recent year that the data has captured of year 
+            <b>2021</b>.
+          </p>
+        </div>
       </div>
     </div>
     <!-- end pure grid group -->
 
-    
     <!-- pure grid group -->
     <div class="pure-g">
       <div class="pure-u-1-1">
@@ -57,9 +73,41 @@
     </div>
     <!-- end pure grid group -->
 
+    <!-- pure grid group -->
+    <div class="pure-g" style="margin-bottom: 0px;">
+      <div class="pure-u-1-1" style="margin-bottom: 0px;">
+        <div class="description-mid">
+          <h3 style="font-weight:900; text-align: center;">POPULATION DENSITY & OVERALL POPULATION COUNT</h1>
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
+    <!-- pure grid group -->
+    <div class="pure-g" style="background-color:aliceblue;">
+      <div class="pure-u-1-2">
+        <div class="description-left">
+          <p>Overall the population density of most of the Southeast Asian countries have been increasing steadily with a population density level higher than the World average,
+            meaning that the Southeast Asian countries are more packed and dense than other countries in the world. Although most of the countries have pretty similar population 
+            density growth rate, Singapore has always had the highest population density and also is the fastest growing when compared to all the countries, while other countries 
+            number in the hundreds, Singapore is already in the thousands but has seen a plateau in growth in recent years.
+          </p>
+          </div>
+      </div>
+      <div class="pure-u-1-2">
+        <div class="description-right">
+            <P>2001 AND 2002 vietnam philipines</P>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    <!-- end pure grid group -->
+
   <script type="text/javascript">
-    var map1 = "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/Assignment2/map.vg.json";
-    var bar_line= "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/Assignment2/bar_line.json";
+    var map1 = "./map.vg.json";
+    var bar_line= "./bar_line.json";
+
     
     vegaEmbed('#vis1', map1, { "actions": false });
 

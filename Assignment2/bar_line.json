@@ -17,16 +17,8 @@
           "Brunei",
           "Myanmar",
           "Thailand",
-          "Bangladesh",
-          "Sri Lanka",
           "Cambodia",
-          "Brunei Darussalam",
-          "United States of America",
-          "India",
-          "China",
-          "Japan",
-          "United Kingdom",
-          "Spain"
+          "Singapore"
         ],
         "labels": [
           "Indonesia",
@@ -38,16 +30,8 @@
           "Brunei",
           "Myanmar",
           "Thailand",
-          "Bangladesh",
-          "Sri Lanka",
           "Cambodia",
-          "Brunei Darussalam",
-          "United States of America",
-          "India",
-          "China",
-          "Japan",
-          "United Kingdom",
-          "Spain"
+          "Singapore"
         ],
         "name": "Country selection: "
       }
@@ -89,8 +73,8 @@
   "hconcat": 
   [{
      "title":"Population density throughout the years",
-      "width":500,
-      "height": 600,
+      "height": 425,
+      "width": 500,
       "layer":[
         {
         "mark": {
@@ -171,8 +155,8 @@
   }, 
   {
     "title":"Current population (2020)",
-    "width":500,
-    "height": 600,
+    "height": 400,
+    "width": 500,
     "layer": [
       {"mark": {
         "type": "bar"
@@ -200,7 +184,7 @@
         ]
       },
       "transform": [
-        {"filter": "datum.year == Population_year"}
+        {"filter": "datum.year == Population_year && datum.country != 'World'"}
       ]}
     ]
   }

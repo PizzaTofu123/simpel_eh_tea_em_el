@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Life expectancy at birth",
   "width": 525,
-  "height": 300,
+  "height": 400,
    "data": {
     "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_MAP.csv"
   },
@@ -20,12 +20,12 @@
     }
   ],
   "projection": {
-    "type": "equirectangular","center":[110,5],"scale":500 },
+    "type": "equirectangular","center":[123,5],"scale":500 },
   "layer": [
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+        "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/ne_50m.topojson",
+        "format": {"type": "topojson", "feature": "ne_50m_admin_0_countries"}
       },
       "transform": [
         {
@@ -44,14 +44,14 @@
           "lookup": "country",
           "from": {
             "data": {
-              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
-              "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+              "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/ne_50m.topojson",
+              "format": {"type": "topojson", "feature": "ne_50m_admin_0_countries"}
             },
             "key": "properties.NAME",
             "fields":["properties", "type", "geometry"]
           }
         },
-        {"filter": "datum.year==year"}
+        {"filter": "datum.year==year && datum.country == 'Singapore'"}
       ],
       "mark": {"type": "geoshape", "stroke":"black"},
       "encoding": {
