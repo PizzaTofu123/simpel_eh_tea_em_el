@@ -1,15 +1,16 @@
-#page_title{
-  font-weight:4000;
-}
+
 
 body *{
   font-family: 'Open Sans', sans-serif;
-
+  font-family: 'Times New Roman', Times, serif;
 }
-
 
 body {
   background-color: lightgray;
+  background-image: url(https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/Assignment2/indonesia.jpg);
+   background-attachment: fixed;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .page {
@@ -18,6 +19,7 @@ body {
   margin: auto;
   padding: 50px;
   padding-top: 35px;
+  border-radius: 25px;
 }
 
 .vis-container {
@@ -29,12 +31,35 @@ h1 {
   margin-top: 0px;
 }
 
-.description-right {
+.description-mid {
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
   padding-left: 20px;
+  padding-right: 20px;
+  font-size: 18px;
+  background-color: aliceblue;
+}
+
+.description-right {
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: aliceblue;
+  font-size: 18px;
+  text-align: justify;
+  margin-left: 5px;
 }
 
 .description-left {
-  padding-right: 100px;
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  background-color: aliceblue;
+  font-size: 18px;
+  text-align: justify;
+  margin-right: 5px;
 }
 
 .pure-g {
