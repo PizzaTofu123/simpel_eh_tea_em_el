@@ -4,7 +4,7 @@
   "params": [
     {
       "name": "Country_selection",
-      "value": "Indonesia",
+      "value": "Singapore",
       "bind": {
         "input": "select",
         "options": [
@@ -18,7 +18,9 @@
           "Myanmar",
           "Thailand",
           "Cambodia",
-          "Singapore"
+          "Singapore",
+          "Laos",
+          "Timor-Leste"
         ],
         "labels": [
           "Indonesia",
@@ -31,7 +33,9 @@
           "Myanmar",
           "Thailand",
           "Cambodia",
-          "Singapore"
+          "Singapore",
+          "Laos",
+          "Timor-Leste"
         ],
         "name": "Country selection: "
       }
@@ -72,9 +76,9 @@
   ],
   "hconcat": 
   [{
-     "title":"Population density throughout the years",
+     "title":"Population density throughout the years per squared kilometre",
       "height": 425,
-      "width": 500,
+      "width": 445,
       "layer":[
         {
         "mark": {
@@ -87,13 +91,9 @@
       },
       {
         "transform": [
+          {"filter": "datum.year == 2019 && datum.country == 'Singapore'"},
           {
-            "window": [{"op": "rank", "as": "ranking"}],
-            "sort": [{"field": "population", "order": "descending"}]
-          },
-          {"filter": "datum['country'] == 'Indonesia' && datum.year == 2000 && Country_selection == 'Indonesia'"},
-          {
-            "calculate": "'Year: 2000;The only year when Indonesia had a;  decrease of population density'",
+            "calculate": "'Year: 2019; Country: Singapore; Highest recorded; population density; in SEA'",
             "as": "text_annotation_raw"
           },
           {
@@ -104,11 +104,37 @@
         "mark": {
           "type": "text",
           "align": "center",
-          "dx": -8,
-          "dy": -30,
+          "dy": 15,
           "baseline": "middle",
           "fontStyle": "italic",
-          "fontSize": 8,
+          "fontSize": 7,
+          "fontWeight": "bold"
+        },
+        "encoding": {
+          "text": {"field": "text_annotation"},
+          "color": {"value": "black"}
+        }
+      },
+      {
+        "transform": [
+          {"filter": "End_year >= 2004 && Start_year <= 2001"},
+          {"filter": "datum.year == 2003 && datum.country == 'Singapore'"},
+          {
+            "calculate": "'Year: 2003; Country: Singapore; Sharpest drop in population density; in SEA'",
+            "as": "text_annotation_raw"
+          },
+          {
+            "calculate": "split(datum.text_annotation_raw, ';')",
+            "as": "text_annotation"
+          }
+        ],
+        "mark": {
+          "type": "text",
+          "align": "center",
+          "dy": 25,
+          "baseline": "middle",
+          "fontStyle": "italic",
+          "fontSize": 7,
           "fontWeight": "bold"
         },
         "encoding": {
@@ -116,13 +142,15 @@
           "color": {"value": "black"}
         }
       }
+
       ]
       ,
       "encoding": {
         "x": {
           "field": "year",
           "type": "ordinal",
-          "title": "Year"
+          "title": "Year",
+          "scale":{"domainMax": 25}
         },
         "y": {
           "field": "population_density",
@@ -134,6 +162,10 @@
           "condition": {
             "test": "datum['country'] == 'Indonesia'",
             "value": "red"
+
+          },
+          "legend": {
+            "orient": "left"
           }
         },
         "opacity":{
@@ -145,7 +177,8 @@
         },
         "tooltip": [
           {"field": "country", "type": "nominal", "title": "Country"},
-          {"field": "population_density", "type": "quantitative", "title":"Population Density"}
+          {"field": "year", "type": "nominal", "title":"Year"},
+          {"field": "population_density", "type": "quantitative", "title":"Population Density (per squared kilometre)"}
         ]
       },
       "transform": [
@@ -154,9 +187,9 @@
       ]
   }, 
   {
-    "title":"Current population (2020)",
+    "title":"Current population",
     "height": 400,
-    "width": 500,
+    "width": 550,
     "layer": [
       {"mark": {
         "type": "bar"

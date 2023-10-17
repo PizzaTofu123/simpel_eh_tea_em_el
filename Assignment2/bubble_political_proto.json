@@ -1,0 +1,63 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 500,
+    "height": 300,
+    "title": "COVID-19 Cases per Country (13 Oct 2020)",
+    "data": {
+      "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_No_NA_SEA.csv"
+    },
+    "params": [
+      {
+        "name": "year",
+        "value": 2020,
+        "bind": {
+          "input": "range",
+          "min": 2000,
+          "max": 2020,
+          "step": 1,
+          "name": "Select the year:"
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.year == year && datum.country != 'World'"}
+    ],
+    "encoding": {
+      "x": {
+        "field": "control_of_corruption_estimate",
+        "type": "quantitative"
+      },
+      "y": {
+        "field": "goverment_effectiveness_estimate",
+        "type": "quantitative",
+        "scale":{"domain":[-2.5,2.5]}
+      }
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "size": {
+            "field": "human_capital_index",
+            "type": "quantitative",
+            "scale": {
+                "domain": [0,0.2,0.4,0.6,0.8,1],
+                "range": [10, 100,500,1000,2500]
+              },
+              "legend":{"title": "HCI"}
+          },
+          "color": {
+            "field": "country",
+            "type": "nominal"
+            },
+            "tooltip": [
+              {"field": "country", "type": "nominal"},
+              {"field": "human_capital_index", "type": "nominal"},
+              {"field": "control_of_corruption_estimate", "type": "nominal"},
+              {"field": "goverment_effectiveness_estimate", "type": "nominal"}
+            ]
+          }
+        }
+    ]
+  }
+

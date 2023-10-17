@@ -1,0 +1,167 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 530,
+    "height": 530,
+    "title": "Political indexes of countries",
+    "data": {
+      "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_No_NA.csv"
+    },
+    "params": [
+      {
+        "name": "Country_selection",
+        "value": "Indonesia",
+        "bind": {
+          "input": "select",
+          "options": [
+            "Indonesia",
+            "Vietnam",
+            "Thailand",
+            "Malaysia",
+            "Philippines",
+            "Brunei",
+            "Myanmar",
+            "Thailand",
+            "Cambodia",
+            "Singapore",
+            "Laos",
+            "Timor-Leste"
+          ],
+          "labels": [
+            "Indonesia",
+            "Vietnam",
+            "Thailand",
+            "Malaysia",
+            "Philippines",
+            "Brunei",
+            "Myanmar",
+            "Thailand",
+            "Cambodia",
+            "Singapore",
+            "Laos",
+            "Timor-Leste"
+          ],
+          "name": "Country selection: "
+        }
+      },
+      {
+        "name": "Display_countries",
+        "value": "All countries",
+        "bind": {
+          "input": "select",
+          "options": [
+            "All countries",
+            "Only SEA countries"
+          ],
+          "labels": [
+            "All countries",
+            "Only SEA countries"
+          ],
+          "name": "Display countries:"
+        }
+      }
+    ],
+    "transform": [
+      {"filter": "datum.year == 2020 && datum.country != 'World'"}
+    ],
+    "encoding": {
+      "x": {
+        "field": "control_of_corruption_estimate",
+        "type": "quantitative",
+        "scale":{"domain":[-2.5,2.5]}
+      },
+      "y": {
+        "field": "goverment_effectiveness_estimate",
+        "type": "quantitative",
+        "scale":{"domain":[-2.5,2.75]}
+      }
+    },
+    "layer": [
+      {
+        "transform": [{"filter": "datum.country =='Indonesia' || datum.country =='Vietnam' || datum.country =='Thailand' || datum.country =='Malaysia' || datum.country =='Philippines' || datum.country =='Brunei' || datum.country =='Myanmar' || datum.country =='Thailand' || datum.country =='Cambodia' || datum.country =='Singapore' || datum.country =='Laos' || datum.country =='Timor-Leste'"}],
+        "mark": {"type":"circle"},
+        "encoding": {
+          "stroke": {"condition":{"test": "Country_selection == datum.country", "value": "black"},
+          "value": null},
+          "size": {
+            "field": "human_capital_index",
+            "type": "quantitative",
+            "scale": {
+                "domain": [0,0.2,0.4,0.6,0.8,1],
+                "range": [50, 100,450,750,1000]
+              },
+              "legend":{"title": "HCI"}
+          },
+          "color": {
+            "field":"country"
+            },
+            "opacity":{
+              "condition":{"test": "Country_selection == datum.country", "value": 1},
+            "value": 0.7
+        
+        },
+          "tooltip": [
+            {"field": "country", "type": "nominal"},
+            {"field": "human_capital_index", "type": "nominal" , "title": " HCI (Human Capital Index)"},
+            {"field": "goverment_effectiveness_estimate", "type": "nominal", "title": " Government effectiveness Index"},
+            {"field": "control_of_corruption_estimate", "type": "nominal", "title": " Control of corruption Index"}
+          ]
+        }
+      },
+      { "transform": [{"filter": "Display_countries == 'All countries'"}],
+        "mark": "circle",
+        "encoding": {
+          "size": {
+            "field": "human_capital_index",
+            "type": "quantitative",
+            "scale": {
+                "domain": [0,0.2,0.4,0.6,0.8,1],
+                "range": [50, 100,450,750,1000]
+              },
+              "legend": null
+          },
+          "color": {
+            "field":"country",
+            "legend": null
+            },
+            "opacity":{
+          "value": 0.05
+        
+        },
+          "tooltip": [
+            {"field": "country", "type": "nominal"},
+            {"field": "human_capital_index", "type": "nominal" , "title": " HCI (Human Capital Index)"},
+            {"field": "goverment_effectiveness_estimate", "type": "nominal", "title": " Government effectiveness Index"},
+            {"field": "control_of_corruption_estimate", "type": "nominal", "title": " Control of corruption Index"}
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "line",
+          "color": "firebrick"
+        },
+        "transform": [
+          {
+            "regression": "goverment_effectiveness_estimate",
+            "on": "control_of_corruption_estimate",
+            "extent": [-2.45,2.45]
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "goverment_effectiveness_estimate",
+            "type": "quantitative",
+            "title": "Government effectiveness"
+          },
+          "y": {
+            "field": "control_of_corruption_estimate",
+            "type": "quantitative",
+            "title": "Control of corruption"
+          },
+          "opacity": {
+            "value": 0.5
+          }
+        }
+      }
+    ]
+  }

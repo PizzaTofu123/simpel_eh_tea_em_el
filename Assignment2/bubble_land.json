@@ -1,0 +1,64 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 350,
+  "title": "Land area of countries",
+  "data": {
+    "url": "https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_No_NA_SEA.csv"
+  },
+  "params": [
+    {
+      "name": "year",
+      "value": 2020,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2020,
+        "step": 1,
+        "name": "Select the year:"
+      }
+    }
+  ],
+  "transform": [
+    {"filter": "datum.year == year && datum.country != 'World'"}
+  ],
+  "encoding": {
+    "x": {
+      "field": "forest_land%",
+      "type": "quantitative",
+      "title": "Forest land %"
+    },
+    "y": {
+      "field": "agricultural_land%",
+      "type": "quantitative",
+      "scale": {"domain": [0,50]},
+      "title": "Agriculture Land %"
+    }
+  },
+  "layer": [
+    {
+      "mark": "circle",
+      "encoding": {
+        "size": {
+          "field": "land_area",
+          "type": "quantitative",
+          "scale": {
+            "domain": [1,15000],
+            "range": [10, 50, 150, 200, 300, 400]
+          },
+          "legend": {"format": ".1s"}
+        },
+        "color": {
+          "field": "country",
+          "type": "nominal"
+          },
+          "tooltip": [
+            {"field": "country", "type": "nominal"},
+            {"field": "land_area", "type": "nominal", "title": "Land Area (km2)"},
+            {"field": "agricultural_land%", "type": "nominal", "title": "Agriculture Land %"},
+            {"field": "forest_land%", "type": "nominal", "title": "Forest land %"}
+          ]
+        }
+      }
+  ]
+}

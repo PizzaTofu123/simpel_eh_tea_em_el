@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.1.0.json",
+    "description": "thickness is not a channel since you shouldn't do ticks with varying thickness.",
+  
+    "title":"GDP per Capita ranking of countries",
+  
+    "width": 525, "height": 375,
+    "data": {"url":"https://raw.githubusercontent.com/PizzaTofu123/simpel_eh_tea_em_el/main/world_bank_development_indicators_cleaned_No_NA_SEA.csv" },
+    "params": [
+      { "name": "top_n", "value": 7 ,
+        "bind": {"input": "range", "min": 1, "max": 11, "step": 1 , "name": "Top N Countries"}
+      },
+      {
+        "name": "Start_year",
+        "value": 1995,
+        "bind": {
+          "input": "range",
+          "min": 1993,
+          "max": 2020,
+          "step": 1,
+          "name": "Select start year :"
+        }
+      }
+    ],
+  
+    "transform": [
+      { "filter": "datum.country != 'World'" },
+      {
+        "calculate": "datum.GDP_current_US/datum.population",
+        "as": "gdp_per_capita"
+      },
+      {
+      "sort": [
+        {"field": "gdp_per_capita", "order": "descending"}
+      ],
+      "window": [{
+        "op": "rank",
+        "as": "rank"
+      }],
+      "groupby": [ "year"]
+      },
+        { "filter": "datum.rank <= top_n" },
+        { "filter": "datum.year >= Start_year && datum.year <= 2020" }
+      ],
+  
+      "encoding": {
+        "x": {  "field": "year",
+              "type": "ordinal" ,
+              "sort": "ascending"
+              } ,
+        "y": {  "field": "rank",
+                "type": "quantitative",
+                "sort": "descending",
+                "scale": {"domain": [0.5, {"expr": "top_n+0.5"} ]},
+                "axis": { "tickMinStep": 1 ,
+                          "tickCount": {"expr": "top_n"}},
+                "title":  "Country Ranking"
+              },
+              "tooltip": [
+                {"field": "country", "type": "nominal", "title": "Country"},
+                {"field": "year", "type": "nominal", "title":"Year"},
+                {"field": "gdp_per_capita", "type": "quantitative", "title":"GDP per capita (US$)"}
+              ]
+        } ,
+  
+    "layer": [
+       {
+  
+      "mark": {"type": "line", "interpolate": "monotone" },
+      "encoding": {
+        "color": { "field": "country" } ,
+        "size":{
+            "condition":  {"param": "sel_country", "empty": false, "value": 3},
+            "value": 1
+          }
+      }
+    },
+    {
+      "params": [
+        { "name": "sel_country", "select": {"type": "point" ,  "on": "click",  "fields": ["country"]},
+          "bind": "legend"
+        }
+      ],
+      "mark": {"type" :"tick", "thickness": 5 },
+      "encoding": {
+        "color": {
+            "condition":  {"param": "sel_country", "empty": false, "value": "black"} ,
+            "field": "country"
+        }
+      }
+  
+    }
+  ]
+  
+    }
